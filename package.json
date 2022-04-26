@@ -1,0 +1,24 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "aplicação para uma lista de tarefas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "author": "Hadassa Moraes",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.3",
+    "path": "^0.12.7",
+    "sqlite3": "^5.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
