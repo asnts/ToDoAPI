@@ -4,7 +4,7 @@
   "description": "aplicação para uma lista de tarefas",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node ./src/app.js",
     "dev": "nodemon ./src/app.js"
   },
@@ -19,6 +19,7 @@
     "sqlite3": "^5.0.4"
   },
   "devDependencies": {
+    "jest": "^28.0.1",
     "nodemon": "^2.0.15"
   }
 }
