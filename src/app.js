@@ -1,13 +1,15 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import Tarefas from "./controllers/Tarefas.js";
-import DatabaseMetodos from "./DAO/DatabaseMetodos.js"
+import DatabaseMetodos from "./DAO/DatabaseMetodos.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT|| 3000;
 
 app.use(express.json());
+app.use(cors());
 
 DatabaseMetodos.createTable();
 
