@@ -1,9 +1,11 @@
+
+
 class TarefasModel{
-    constructor(titulo, descricao, status, dataCriacao, dataConclusao){
+    constructor(titulo, descricao, status, idUsuario, dataConclusao){
         this.titulo=titulo;
         this.descricao=descricao;
         this.status=status;
-        this.dataCriacao=dataCriacao;
+        this.idUsuario = idUsuario;
         this.dataConclusao=dataConclusao;
     }
 }

@@ -1,30 +1,46 @@
 import { response } from "express";
 import Database from "../infra/Database.js";
 import TarefasModel from "../models/TarefasModel.js";
-import DatabaseMetodos  from "../DAO/DatabaseMetodos.js"
+import DatabaseMetodos  from "../DAO/DatabaseMetodos.js";
+import Validacoes from "../services/Validacoes.js";
 
 
 class Tarefas{
     static routers (app){
         app.get('/tarefas', async (req,res)=>{
-            const response = await DatabaseMetodos.listarTodos();
-            res.status(200).json(response)
+            try {
+                const response = await DatabaseMetodos.listarTodos();
+                res.status(200).json(response)
+            } catch (error) {
+                res.status(400).json(error)
+            }
+
 //            res.status(200).send(Database)
         });
 
-        app.get('/tarefas/:id', (req,res) =>{
-            const id = req.params.id;
-            console.log(id);
-            res.status(200).json(Database[id])
+        app.get('/tarefas/:id', async (req,res) =>{
+            try {
+                const id = req.params.id;
+                const response = await DatabaseMetodos.listarUm(id);
+                res.status(200).json(response)
+            } catch (error) {
+                res.status(400).json(error)
+            }            
+//            const id = req.params.id;
+//            res.status(200).json(Database[id])
         });
 
         app.post('/tarefas', async (req,res)=>{
-            const tarefa = new TarefasModel(...Object.values(req.body));
             try{
-                const response = await DatabaseMetodos.popular(tarefa);
-                res.status(201).json(response);
+                if(Validacoes.validaNome(req.body.nome) && Validacoes.validaStatus(req.body.status)){
+                    const tarefa = new TarefasModel(...Object.values(req.body));
+                    const response = await DatabaseMetodos.popular(tarefa);
+                    res.status(201).json(response);
+                }else{
+                    throw new Error('A requisição está fora dos padrões, favor consultar documentacao')
+                }
             } catch(error){
-                res.status(400).json(error)
+                res.status(400).json({erro: error.message})
             }
 
 

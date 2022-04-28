@@ -21,3 +21,10 @@ test("Verificar se o número de telefone só tem caracteres tipo numero", ()=>{
 test("Verificar se o número de telefone tem menos de 11 digitos", ()=>{
     expect(Validacoes.validaTelefone("123456789")).toBe(false)
 });
+
+test("Verificar se a entrada de status é valida",()=>{
+    expect(Validacoes.validaStatus('finalizada' || 'andamento' || 'a fazer')).toBe(true)
+});
+
+
+

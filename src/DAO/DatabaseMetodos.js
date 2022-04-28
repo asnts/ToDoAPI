@@ -61,6 +61,22 @@ class DatabaseMetodos{
             })
         })
     }
+
+    static listarUm(id) {
+        const query = `SELECT * FROM tarefas WHERE id=${id}`;
+        return new Promise((resolve, reject) => {
+            Database.run(query, [id], (e, result) => {
+                if (e) {
+                    reject(e.message) 
+                } else { 
+                    resolve(result) 
+                }
+            })
+        })
+    }
+
+
+    
 }
 
 export default DatabaseMetodos;
